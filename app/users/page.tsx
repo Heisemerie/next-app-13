@@ -6,7 +6,9 @@ interface User {
 }
 
 const UsersPage = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const res = await fetch("https://jsonplaceholder.typicode.com/users", {
+    next: { revalidate: 10 }, //caching only works with the fetch() function and not third party libraries
+  });
   const users: User[] = await res.json();
 
   return (
