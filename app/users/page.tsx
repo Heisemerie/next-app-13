@@ -14,6 +14,8 @@ const UsersPage = async () => {
   return (
     <>
       <h1>Users</h1>
+      {/* the line below refreshes in development but not in production */}
+      <p>{new Date().toLocaleTimeString()}</p>
       <ul>
         {users.map((user) => (
           <li key={user.id}>{user.name}</li>
