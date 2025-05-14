@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import UserTable from "./UserTable";
 import Link from "next/link";
 
@@ -14,8 +14,12 @@ const UsersPage = ({ searchParams: { sortOrder } }: Props) => {
       <h1>Users</h1>
       {/* the line below refreshes in development but not in production */}
       <p>{new Date().toLocaleTimeString()}</p>
-      <Link href={"/users/new"} className="btn">New user</Link>
-      <UserTable sortOrder={sortOrder} />
+      <Link href={"/users/new"} className="btn">
+        New user
+      </Link>
+      <Suspense fallback={<p>Loading...</p>}>
+        <UserTable sortOrder={sortOrder} />
+      </Suspense>
     </>
   );
 };
