@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^6.8.1",
     "fast-sort": "^3.4.1",
     "next": "13.5.11",
     "prisma": "^6.8.1",
