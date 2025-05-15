@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import schema from "../schema";
 
 interface Props {
   params: { userId: number };
@@ -19,8 +20,10 @@ export async function PUT(request: NextRequest, { params: { userId } }: Props) {
   const body = await request.json();
   // Validate the request body
   // If invalid, return 400
-  if (!body.name)
-    return NextResponse.json({ error: "Name is required" }, { status: 400 });
+  const validation = schema.safeParse(body);
+
+  if (!validation.success)
+    return NextResponse.json(validation.error.errors, { status: 400 });
 
   // Fetch the user with the given id
   // If user doesn't exist, return 404
@@ -40,5 +43,5 @@ export function DELETE(request: NextRequest, { params: { userId } }: Props) {
   if (userId > 10)
     return NextResponse.json({ error: "User not found" }, { status: 404 });
 
-  return NextResponse.json({})
+  return NextResponse.json({});
 }
