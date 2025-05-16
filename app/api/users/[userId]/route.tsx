@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import schema from "../schema";
+import schema, { UserData } from "../schema";
 import { prisma } from "@/prisma/client";
 
 interface Props {
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest, { params: { userId } }: Props) {
 //PUT for replacing an object
 //PATCH for updating one or more properties
 export async function PUT(request: NextRequest, { params: { userId } }: Props) {
-  const body = await request.json();
+  const body: UserData = await request.json();
   // Validate the request body
   // If invalid, return 400
   const validation = schema.safeParse(body);
