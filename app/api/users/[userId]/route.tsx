@@ -47,13 +47,21 @@ export async function PUT(request: NextRequest, { params: { userId } }: Props) {
   return NextResponse.json(updatedUser);
 }
 
-export function DELETE(request: NextRequest, { params: { userId } }: Props) {
+export async function DELETE(
+  request: NextRequest,
+  { params: { userId } }: Props
+) {
   // Fetch the user from the DB
+  const user = await prisma.user.findUnique({
+    where: { id: parseInt(userId) },
+  });
+
   // If not found, return 404
-  // Delete the user
-  // Return 200
-  if (parseInt(userId) > 10)
+  if (!user)
     return NextResponse.json({ error: "User not found" }, { status: 404 });
 
+  // Delete the user
+  // Return 200
+   await prisma.user.delete({ where: { id: user.id } });
   return NextResponse.json({});
 }
