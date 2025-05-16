@@ -23,6 +23,7 @@ export async function GET(request: NextRequest, { params: { userId } }: Props) {
 //PATCH for updating one or more properties
 export async function PUT(request: NextRequest, { params: { userId } }: Props) {
   const body: UserData = await request.json();
+  
   // Validate the request body
   // If invalid, return 400
   const validation = schema.safeParse(body);

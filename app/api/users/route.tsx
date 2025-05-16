@@ -17,10 +17,9 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   const body: UserData = await request.json();
   // Validate
-  // If invalid, return 400
-  // Else return data
   const validation = schema.safeParse(body);
 
+  // If invalid, return 400
   if (!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400 });
 
@@ -29,6 +28,7 @@ export async function POST(request: NextRequest) {
   if (user)
     return NextResponse.json({ error: "User already exists" }, { status: 400 });
 
+  // Else return data
   const newUser = await prisma.user.create({
     data: { name: body.name, email: body.email },
   });

@@ -126,7 +126,13 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   followers: 'followers',
   isActive: 'isActive',
-  RegisteredAt: 'RegisteredAt'
+  registeredAt: 'registeredAt'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price'
 };
 
 exports.Prisma.SortOrder = {
@@ -139,9 +145,14 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   name: 'name'
 };
 
+exports.Prisma.ProductOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Product: 'Product'
 };
 
 /**
