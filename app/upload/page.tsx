@@ -16,6 +16,7 @@ const UploadPage = () => {
       )}
       <CldUploadWidget
         uploadPreset="guxzjmiv"
+        options={{ sources: ["local", "google_drive"], multiple: false }}
         onSuccess={(result, widget) => {
           console.log(result); // has a public id property in the info object
           if (result.event !== "success") return;
