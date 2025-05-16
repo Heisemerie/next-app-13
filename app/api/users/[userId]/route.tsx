@@ -32,12 +32,19 @@ export async function PUT(request: NextRequest, { params: { userId } }: Props) {
 
   // Fetch the user with the given id
   // If user doesn't exist, return 404
-  if (parseInt(userId) > 10)
+  const user = await prisma.user.findUnique({
+    where: { id: parseInt(userId) },
+  });
+  if (!user)
     return NextResponse.json({ error: "User not found" }, { status: 404 });
 
   // Else, update user
   // Return updated user
-  return NextResponse.json({ id: 1, name: body.name });
+  const updatedUser = await prisma.user.update({
+    where: { id: user.id },
+    data: { name: body.name, email: body.email },
+  });
+  return NextResponse.json(updatedUser);
 }
 
 export function DELETE(request: NextRequest, { params: { userId } }: Props) {
