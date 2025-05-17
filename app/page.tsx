@@ -4,6 +4,7 @@ import ProductCard from "./components/ProductCard";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import processThread from "@/public/images/Process vs Thread.gif";
+import { Metadata } from "next";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -29,3 +30,7 @@ export default async function Home() {
     </main>
   );
 }
+
+export const metadata: Metadata = {
+  title: "...",
+};
