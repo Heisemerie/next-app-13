@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import processThread from "@/public/images/Process vs Thread.gif";
 import { Metadata } from "next";
+import HeavyComponent from "./components/HeavyComponent";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -27,6 +28,7 @@ export default async function Home() {
         quality={100}
         priority
       /> */}
+      <HeavyComponent/>
     </main>
   );
 }
