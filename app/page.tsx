@@ -32,5 +32,5 @@ export default async function Home() {
 }
 
 export const metadata: Metadata = {
-  title: "...",
+  title: "Homepage",
 };
