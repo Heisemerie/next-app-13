@@ -1,11 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import ProductCard from "./components/ProductCard";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
 import processThread from "@/public/images/Process vs Thread.gif";
 import { Metadata } from "next";
+import { getServerSession } from "next-auth";
+import Image from "next/image";
+import Link from "next/link";
+import { authOptions } from "./api/auth/authOptions";
 import HeavyComponent from "./components/HeavyComponent";
+import ProductCard from "./components/ProductCard";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
